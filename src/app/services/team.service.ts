@@ -4,7 +4,7 @@ import { Team } from '../interfaces/team';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export const TeampTableHeaders = ['name', 'country', 'players'];
+export const TeampTableHeaders = ['Name', 'Country', 'Players'];
 
 @Injectable({
   providedIn: 'root'
