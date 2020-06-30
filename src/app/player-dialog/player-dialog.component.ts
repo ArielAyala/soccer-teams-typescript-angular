@@ -20,7 +20,7 @@ export class PlayerDialogComponent implements OnInit {
       label: key,
       key: SquadNumber[key]
     }));
-  constructor(private playerService: PlayerService, private teamService: TeamService) { }
+  constructor(private playerService: PlayerService, private teamService: TeamService) {}
 
   ngOnInit() {
     this.teamService
@@ -47,7 +47,7 @@ export class PlayerDialogComponent implements OnInit {
   }
 
   onSubmit(playerForm: NgForm) {
-    const playerFormValue = { ...playerForm.value };
+    const playerFormValue = {...playerForm.value};
     if (playerForm.valid) {
       playerFormValue.leftFooted = playerFormValue.leftFooted === '' ? false : playerFormValue.leftFooted;
     }

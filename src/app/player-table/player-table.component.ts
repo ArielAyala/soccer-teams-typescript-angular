@@ -9,16 +9,13 @@ import { PlayerService } from '../services/player.service';
   styleUrls: ['./player-table.component.scss']
 })
 export class PlayerTableComponent implements OnInit {
-
   public players$: Observable<Player[]>;
   public selectedPlayer: Player;
   public showModal = false;
 
-  constructor(private playerService: PlayerService) {
-    
-   }
+  constructor(private playerService: PlayerService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.players$ = this.playerService.getPlayers();
   }
 
@@ -26,8 +23,7 @@ export class PlayerTableComponent implements OnInit {
     this.showModal = true;
     this.selectedPlayer = null;
     setTimeout(() => {
-      window.location.replace('#open');
-    }, 0);
+      window.location.replace('#open-modal');
+    });
   }
-
 }
