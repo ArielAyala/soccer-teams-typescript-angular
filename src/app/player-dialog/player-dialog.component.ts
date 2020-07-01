@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Countries, SquadNumber } from '../interfaces/player';
 import { PlayerService } from '../services/player.service';
 import { TeamService } from '../services/team.service';
@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./player-dialog.component.scss']
 })
 export class PlayerDialogComponent implements OnInit {
+  @Output() closeDialog: EventEmitter<boolean> = new EventEmitter();
   private team;
   public player;
   public countries = Object.keys(Countries).map(key => ({ label: key, key: Countries[key] }));
@@ -20,7 +21,7 @@ export class PlayerDialogComponent implements OnInit {
       label: key,
       key: SquadNumber[key]
     }));
-  constructor(private playerService: PlayerService, private teamService: TeamService) {}
+  constructor(private playerService: PlayerService, private teamService: TeamService) { }
 
   ngOnInit() {
     this.teamService
@@ -47,11 +48,15 @@ export class PlayerDialogComponent implements OnInit {
   }
 
   onSubmit(playerForm: NgForm) {
-    const playerFormValue = {...playerForm.value};
+    const playerFormValue = { ...playerForm.value };
     if (playerForm.valid) {
       playerFormValue.leftFooted = playerFormValue.leftFooted === '' ? false : playerFormValue.leftFooted;
     }
     this.newPlayer(playerFormValue);
     window.location.replace('#');
+  }
+
+  onClose() {
+    this.closeDialog.emit(true);
   }
 }

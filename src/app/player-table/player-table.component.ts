@@ -26,4 +26,8 @@ export class PlayerTableComponent implements OnInit {
       window.location.replace('#open-modal');
     });
   }
+
+  closeDialog() {
+    this.showModal = false;
+  }
 }
