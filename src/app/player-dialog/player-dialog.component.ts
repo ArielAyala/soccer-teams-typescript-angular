@@ -14,7 +14,6 @@ export class PlayerDialogComponent implements OnInit {
   @Input() player: Player;
   @Output() closeDialog: EventEmitter<boolean> = new EventEmitter();
   private team;
-
   public countries = Object.keys(Countries).map(key => ({ label: key, key: Countries[key] }));
   public squadNumber = Object.keys(SquadNumber)
     .slice(Object.keys(SquadNumber).length / 2)
@@ -52,6 +51,17 @@ export class PlayerDialogComponent implements OnInit {
     const playerFormValueWithKey = { ...playerFormValue, $key: this.player.$key };
     const playerFormValueWithFormattedKey = { ...playerFormValue, key: this.player.$key };
     delete playerFormValueWithFormattedKey.$key;
+    const moddifiedPlayers = this.team.players
+      ? this.team.players.map(player => {
+        return player.key === this.player.$key ? playerFormValueWithFormattedKey : player;
+      })
+      : this.team.players;
+    const formattedTeam = {
+      ...this.team,
+      players: [...(moddifiedPlayers ? moddifiedPlayers : [playerFormValueWithFormattedKey])]
+    };
+    this.playerService.editPlayer(playerFormValueWithKey);
+    this.teamService.editTeam(formattedTeam);
   }
 
   onSubmit(playerForm: NgForm) {
@@ -59,7 +69,11 @@ export class PlayerDialogComponent implements OnInit {
     if (playerForm.valid) {
       playerFormValue.leftFooted = playerFormValue.leftFooted === '' ? false : playerFormValue.leftFooted;
     }
-    this.newPlayer(playerFormValue);
+    if (this.player) {
+      this.editPlayer(playerFormValue);
+    } else {
+      this.newPlayer(playerFormValue);
+    }
     window.location.replace('#');
   }
 
