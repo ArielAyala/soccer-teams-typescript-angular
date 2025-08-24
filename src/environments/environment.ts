@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   firebase: {
     apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: "typescript-angular-c3662.firebaseapp.com",
-    databaseURL: "https://typescript-angular-c3662.firebaseio.com",
-    projectId: "typescript-angular-c3662",
-    storageBucket: "typescript-angular-c3662.appspot.com",
-    messagingSenderId: "682992510442",
-    appId: "1:682992510442:web:8538e90dc7d65174aa7e93",
-    measurementId: "G-8SYQSZ976J"
+    authDomain: 'typescript-angular-c3662.firebaseapp.com',
+    databaseURL: 'https://typescript-angular-c3662.firebaseio.com',
+    projectId: 'typescript-angular-c3662',
+    storageBucket: 'typescript-angular-c3662.appspot.com',
+    messagingSenderId: '682992510442',
+    appId: '1:682992510442:web:8538e90dc7d65174aa7e93',
+    measurementId: 'G-8SYQSZ976J'
   }
 };
 

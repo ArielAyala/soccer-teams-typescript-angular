@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/compat/database';
 import { Player } from '../interfaces/player';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
